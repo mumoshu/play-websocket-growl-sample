@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{form @notifyWithGrowl(), id:'notifyForm'}
+<input id="message" name="message" type="text"></input>
+<input type="submit" value="Notify" />
+#{/form}
+
+<script>
+    var ws = new WebSocket("@@{Notifications.WebSocket.connect()}");
+    $('#notifyForm').submit(function(e) {
+        $.post('@{notifyWithGrowl()}', $('#notifyForm').serialize());
+        return false;
+    });
+</script>

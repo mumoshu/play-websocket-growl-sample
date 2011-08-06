@@ -1,0 +1,12 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div id="messages">
+</div>
+
+<script>
+    var ws = new WebSocket("@@{Notifications.WebSocket.connect()}");
+    ws.onmessage = function(event) {
+        $('#messages').append('<div>' + event.data + '</div>')
+    };
+</script>

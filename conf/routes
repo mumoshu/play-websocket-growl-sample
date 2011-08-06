@@ -5,6 +5,17 @@
 # Home page
 GET     /                                       Application.index
 
+GET     /growl/?                                Application.growlHTTP
+GET     /growl/ws/?                             Application.growlWS
+
+GET     /notifications                          Notifications.index
+
+// HTTPで通知
+POST    /growl/notify                           Application.notifyWithGrowl
+
+// WSで通知と受信
+WS      /notifications                          Notifications.WebSocket.connect
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
